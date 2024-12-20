@@ -1,0 +1,21 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
+    "nuxt": "^3.14.1592",
+    "vite-plugin-vuetify": "^2.0.4",
+    "vue": "latest",
+    "vue-router": "latest",
+    "vuetify": "^3.7.0-beta.1"
+  }
+}
