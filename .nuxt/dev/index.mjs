@@ -1,32 +1,32 @@
-import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { mkdirSync } from 'node:fs';
+import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, setResponseHeaders, createError, getRouterParam, getQuery as getQuery$1, readBody, getResponseStatusText } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
+import { mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { parentPort, threadId } from 'node:worker_threads';
-import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, setResponseHeaders, createError, getRouterParam, getQuery as getQuery$1, readBody, getResponseStatusText } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/h3/dist/index.mjs';
-import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/devalue/index.js';
-import destr from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/destr/dist/index.mjs';
-import { withQuery, joinURL, withTrailingSlash, parseURL, withoutBase, getQuery, joinRelativeURL } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/vue/server-renderer/index.mjs';
-import { propsToString, renderSSRHead } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/@unhead/ssr/dist/index.mjs';
-import { createServerHead as createServerHead$1, CapoPlugin } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/unhead/dist/index.mjs';
-import { klona } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/scule/dist/index.mjs';
-import { createHooks } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/hookable/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/ofetch/dist/node.mjs';
-import { createCall, createFetch } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/unenv/runtime/fetch/index.mjs';
+import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { stringify, uneval } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/devalue/index.js';
+import destr from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/destr/dist/index.mjs';
+import { withQuery, joinURL, withTrailingSlash, parseURL, withoutBase, getQuery, joinRelativeURL } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/vue/server-renderer/index.mjs';
+import { propsToString, renderSSRHead } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/@unhead/ssr/dist/index.mjs';
+import { createHooks } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/hookable/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/ofetch/dist/node.mjs';
+import { createCall, createFetch } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/unenv/runtime/fetch/index.mjs';
+import { klona } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/scule/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/radix3/dist/index.mjs';
+import { getContext } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/unctx/dist/index.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { consola } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/consola/dist/index.mjs';
-import { getContext } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/unctx/dist/index.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/errx/dist/index.js';
-import { isVNode, version, unref } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/vue/index.mjs';
-import { hash } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/ohash/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/radix3/dist/index.mjs';
-import { defineHeadPlugin } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/@unhead/shared/dist/index.mjs';
+import { consola } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/consola/dist/index.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/errx/dist/index.js';
+import { isVNode, version, unref } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/vue/index.mjs';
+import { hash } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/ohash/dist/index.mjs';
+import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/unhead/dist/index.mjs';
+import { defineHeadPlugin } from 'file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/@unhead/shared/dist/index.mjs';
 
 function hasReqHeader(event, name, includes) {
   const value = getRequestHeader(event, name);
@@ -172,13 +172,13 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _kj9wKQA72n = (function(nitro) {
+const _AsMkhxVDPi = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
-const rootDir = "C:/Users/wings/Desktop/code/quiz-app-nuxt";
+const rootDir = "/Users/wangyumin/Desktop/code/quizAppNuxt";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
@@ -197,7 +197,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _gEjwWtx9YZ = (nitroApp) => {
+const _VJxt1C82Cg = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -267,18 +267,18 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _kj9wKQA72n,
-_gEjwWtx9YZ
+  _AsMkhxVDPi,
+_VJxt1C82Cg
 ];
 
-const _lazy_EXOPXx = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_8f4REf = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_EXOPXx, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_EXOPXx, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_error', handler: _lazy_8f4REf, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_8f4REf, lazy: true, middleware: false, method: undefined }
 ];
 
-const serverAssets = [{"baseName":"server","dir":"C:/Users/wings/Desktop/code/quiz-app-nuxt/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/Users/wangyumin/Desktop/code/quizAppNuxt/server/assets"}];
 
 const assets = createStorage();
 
@@ -290,11 +290,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:\\Users\\wings\\Desktop\\code\\quiz-app-nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:\\Users\\wings\\Desktop\\code\\quiz-app-nuxt\\server","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:\\Users\\wings\\Desktop\\code\\quiz-app-nuxt\\.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:\\Users\\wings\\Desktop\\code\\quiz-app-nuxt\\.nuxt\\cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"C:\\Users\\wings\\Desktop\\code\\quiz-app-nuxt\\.data\\kv","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/wangyumin/Desktop/code/quizAppNuxt","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/wangyumin/Desktop/code/quizAppNuxt/server","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/wangyumin/Desktop/code/quizAppNuxt/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/wangyumin/Desktop/code/quizAppNuxt/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/wangyumin/Desktop/code/quizAppNuxt/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -751,6 +751,11 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
   }
 });
 
+getContext("nitro-app", {
+  asyncContext: false,
+  AsyncLocalStorage: void 0
+});
+
 const config = useRuntimeConfig();
 const _routeRulesMatcher = toRouteMatcher(
   createRouter({ routes: config.nitro.routeRules })
@@ -1161,8 +1166,8 @@ function publicAssetsURL(...path) {
 
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
-const getClientManifest = () => import('file://C:/Users/wings/Desktop/code/quiz-app-nuxt/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
-const getServerEntry = () => import('file://C:/Users/wings/Desktop/code/quiz-app-nuxt/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file:///Users/wangyumin/Desktop/code/quizAppNuxt/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file:///Users/wangyumin/Desktop/code/quizAppNuxt/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
 const getSSRStyles = lazyCachedFunction(() => Promise.resolve().then(function () { return styles$1; }).then((r) => r.default || r));
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();

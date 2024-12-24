@@ -7,12 +7,12 @@
     "module": true,
     "resourceType": "script"
   },
-  "C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/nuxt/dist/app/entry.js": {
+  "/Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/nuxt/dist/app/entry.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
     "isEntry": true,
-    "file": "C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/nuxt/dist/app/entry.js"
+    "file": "/Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/nuxt/dist/app/entry.js"
   }
 }

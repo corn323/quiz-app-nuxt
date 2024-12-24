@@ -1,1 +1,1 @@
-export { default } from "file:///C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
+export { default } from "file:///Users/wangyumin/Desktop/code/quizAppNuxt/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
