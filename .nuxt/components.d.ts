@@ -3,8 +3,11 @@ import type { DefineComponent, SlotsType } from 'vue'
 type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refresh: () => Promise<void>}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, SlotsType<{ fallback: { error: unknown } }>>
 interface _GlobalComponents {
       'AnswerSelect': typeof import("../components/AnswerSelect.vue")['default']
+    'GeneratePdfButton': typeof import("../components/GeneratePdfButton.vue")['default']
     'OptionsGrid': typeof import("../components/OptionsGrid.vue")['default']
     'QuetionInput': typeof import("../components/QuetionInput.vue")['default']
+    'QuetionList': typeof import("../components/QuetionList.vue")['default']
+    'SearchBar': typeof import("../components/SearchBar.vue")['default']
     'TagInput': typeof import("../components/TagInput.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -30,8 +33,11 @@ interface _GlobalComponents {
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyAnswerSelect': typeof import("../components/AnswerSelect.vue")['default']
+    'LazyGeneratePdfButton': typeof import("../components/GeneratePdfButton.vue")['default']
     'LazyOptionsGrid': typeof import("../components/OptionsGrid.vue")['default']
     'LazyQuetionInput': typeof import("../components/QuetionInput.vue")['default']
+    'LazyQuetionList': typeof import("../components/QuetionList.vue")['default']
+    'LazySearchBar': typeof import("../components/SearchBar.vue")['default']
     'LazyTagInput': typeof import("../components/TagInput.vue")['default']
     'LazyNuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
     'LazyNuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -63,8 +69,11 @@ declare module 'vue' {
 }
 
 export const AnswerSelect: typeof import("../components/AnswerSelect.vue")['default']
+export const GeneratePdfButton: typeof import("../components/GeneratePdfButton.vue")['default']
 export const OptionsGrid: typeof import("../components/OptionsGrid.vue")['default']
 export const QuetionInput: typeof import("../components/QuetionInput.vue")['default']
+export const QuetionList: typeof import("../components/QuetionList.vue")['default']
+export const SearchBar: typeof import("../components/SearchBar.vue")['default']
 export const TagInput: typeof import("../components/TagInput.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -90,8 +99,11 @@ export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyAnswerSelect: typeof import("../components/AnswerSelect.vue")['default']
+export const LazyGeneratePdfButton: typeof import("../components/GeneratePdfButton.vue")['default']
 export const LazyOptionsGrid: typeof import("../components/OptionsGrid.vue")['default']
 export const LazyQuetionInput: typeof import("../components/QuetionInput.vue")['default']
+export const LazyQuetionList: typeof import("../components/QuetionList.vue")['default']
+export const LazySearchBar: typeof import("../components/SearchBar.vue")['default']
 export const LazyTagInput: typeof import("../components/TagInput.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
