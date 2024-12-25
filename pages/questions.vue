@@ -1,20 +1,20 @@
 <template>
-  <v-container class="quetionsContainerCss">
+  <v-container class="questionsContainerCss">
     <SearchBar/>
-    <QuetionList/>
+    <questionList/>
     <GeneratePdfButton />
   </v-container>
 </template>
 
 <script lang="ts" setup>
-import QuetionList from '~/components/QuetionList.vue'
+import questionList from '~/components/QuetionList.vue'
 import SearchBar from '~/components/SearchBar.vue'
 import GeneratePdfButton from '~/components/GeneratePdfButton.vue'
 
 </script>
 
 <style scoped>
-.quetionsContainerCss {
+.questionsContainerCss {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;

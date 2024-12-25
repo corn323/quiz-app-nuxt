@@ -13,7 +13,8 @@
       </v-main>
       <v-footer color="#27272f" app>
         <v-col class="text-center">
-          <span class="white--text">&copy; 2023-2025 玉米製作</span>
+          <span class="white--text">&copy; 2023-2025 <a style="text-decoration: none;color: #ffffff;"
+              href="https://web.corn323.com">玉米</a>製作</span>
         </v-col>
       </v-footer>
     </v-app>
