@@ -45,7 +45,7 @@ function addQuestion() {
   // 验证选项是否填写完整
   const options = question.value.options;
   const missingOptions = Object.values(options).filter(option => !option);
-  
+
   if (missingOptions.length > 0) {
     alert('请完整填写所有选项');
     return;
@@ -94,7 +94,7 @@ function updateTags(val) {
 
 <style scoped>
 .form-container {
-  min-height: 100vh;
+  justify-content: center;
   padding: 2rem;
   display: flex;
   flex-direction: column;

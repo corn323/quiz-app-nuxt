@@ -12,9 +12,11 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
+    "@prisma/client": "^6.1.0",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",
     "nuxt": "^3.14.1592",
+    "prisma": "^6.1.0",
     "vite-plugin-vuetify": "^2.0.4",
     "vue": "latest",
     "vue-router": "^4.5.0",

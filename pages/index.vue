@@ -9,12 +9,9 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 </script>
 
 <style scoped>
-.mx-2 {
-  margin-left: 8px;
-  margin-right: 8px;
-}
+
 </style>

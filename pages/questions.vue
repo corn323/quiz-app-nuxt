@@ -1,12 +1,12 @@
 <template>
   <v-container class="questionsContainerCss">
-    <SearchBar/>
-    <questionList/>
+    <SearchBar />
+    <questionList />
     <GeneratePdfButton />
   </v-container>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import questionList from '~/components/QuetionList.vue'
 import SearchBar from '~/components/SearchBar.vue'
 import GeneratePdfButton from '~/components/GeneratePdfButton.vue'
@@ -15,8 +15,6 @@ import GeneratePdfButton from '~/components/GeneratePdfButton.vue'
 
 <style scoped>
 .questionsContainerCss {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
 }
 </style>
