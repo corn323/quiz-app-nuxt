@@ -13,7 +13,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import axios from 'axios';
 
 import OptionsGrid from '~/components/OptionsGrid.vue'
 import QuestionInput from '~/components/QuestionInput.vue'
@@ -35,7 +36,7 @@ const question = ref({
 const availableTags = ref([]);
 
 
-function addQuestion() {
+async function addQuestion() {
   // 验证必填项是否有值
   if (!question.value.title || !question.value.answer) {
     alert('题目和答案不能为空');
@@ -57,33 +58,36 @@ function addQuestion() {
   console.log('正确答案:', question.value.answer);
   console.log('标签:', question.value.tags);
 
-  // 这里你可以将题目数据保存到后端或进行其他处理
-  // 示例：假设你需要将其发送到API
-  // axios.post('/api/questions', question.value)
-  //   .then(response => {
-  //     console.log('题目添加成功:', response.data);
-  //   })
-  //   .catch(error => {
-  //     console.error('提交失败:', error);
-  //   });
+  await uploadData(question);
 
-  // 清空表单数据（如果需要）
-  question.value = {
-    title: '',
-    options: {
-      option1: '',
-      option2: '',
-      option3: '',
-      option4: ''
-    },
-    answer: '',
-    tags: []
-  };
-
-  // 显示成功消息
-  alert('题目已成功新增');
 }
 
+async function uploadData(question) {
+  try {
+    // 保存題目
+    await axios.post('/api/questionDataHandler', {
+      title: question.value.title,
+      options: question.value.options,
+      answer: question.value.answer,
+      tags: question.value.tags
+    });
+
+    question.value = {
+      title: '',
+      options: {
+        option1: '',
+        option2: '',
+        option3: '',
+        option4: ''
+      },
+      answer: '',
+      tags: []
+    }
+    alert('題目已成功新增');
+  } catch (error) {
+    console.error('提交失敗:', error)
+  }
+}
 
 function updateTags(val) {
   if (val && !availableTags.value.includes(val)) {
@@ -100,6 +104,8 @@ function updateTags(val) {
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  top:10vh;
+  position: relative;
 }
 
 .bottom-controls {

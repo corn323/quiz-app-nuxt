@@ -1,23 +1,13 @@
 <template>
   <div class="tag-input">
-    <v-combobox
-      style="background-color: white;"
-      :model-value="modelValue"
-      @update:model-value="updateModelValue"
-      :items="availableTags"
-      multiple
-      chips
-      small-chips
-      deletable-chips
-      :search-input.sync="search"
-      @update:search-input="updateTags"
-      :rules="[v => v.length <= 5 || '最多選擇5個標籤']"
-    >
+    <v-combobox style="background-color: white;" :model-value="modelValue" @update:model-value="updateModelValue"
+      :items="availableTags" multiple chips small-chips deletable-chips :search-input.sync="search"
+      @update:search-input="updateTags" :rules="[v => v.length <= 5 || '最多選擇5個標籤']">
       <template v-slot:no-data>
         <v-list-item>
-            <v-list-item-title>
-              按 <kbd>enter</kbd> 新增 "{{ search }}"
-            </v-list-item-title>
+          <v-list-item-title>
+            按 <kbd>enter</kbd> 新增 "{{ search }}"
+          </v-list-item-title>
         </v-list-item>
       </template>
     </v-combobox>
@@ -25,7 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+// @ts-ignore
+import { ref, defineProps, defineEmits } from 'vue'
 
 interface Props {
   modelValue: string[];

@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { parentPort, threadId } from 'node:worker_threads';
 import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, setResponseHeaders, createError, getRouterParam, getQuery as getQuery$1, readBody, getResponseStatusText } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/h3/dist/index.mjs';
+import { PrismaClient } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/@prisma/client/default.js';
 import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import { stringify, uneval } from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/devalue/index.js';
 import destr from 'file://C:/Users/wings/Desktop/code/quiz-app-nuxt/node_modules/destr/dist/index.mjs';
@@ -271,9 +272,11 @@ const plugins = [
 _gEjwWtx9YZ
 ];
 
+const _lazy_bkGQGY = () => Promise.resolve().then(function () { return questionDataHandler$1; });
 const _lazy_EXOPXx = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
+  { route: '/api/questionDataHandler', handler: _lazy_bkGQGY, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_error', handler: _lazy_EXOPXx, lazy: true, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_EXOPXx, lazy: true, middleware: false, method: undefined }
 ];
@@ -1082,6 +1085,39 @@ const template$1 = (messages) => {
 const errorDev = /*#__PURE__*/Object.freeze({
   __proto__: null,
   template: template$1
+});
+
+const prisma = new PrismaClient();
+const questionDataHandler = defineEventHandler(async (event) => {
+  if (event.method === "POST") {
+    const body = await readBody(event);
+    const { title, options, answer, tags } = body;
+    const question = await prisma.question.create({
+      data: {
+        question: title,
+        options: JSON.stringify(options),
+        answer,
+        tags: JSON.stringify(tags)
+      }
+    });
+    return question;
+  } else if (event.method === "GET") {
+    const questions = await prisma.question.findMany();
+    return questions;
+  } else if (event.method === "DELETE") {
+    const body = await readBody(event);
+    const { id } = body;
+    await prisma.question.delete({
+      where: {
+        id
+      }
+    });
+  }
+});
+
+const questionDataHandler$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: questionDataHandler
 });
 
 const Vue3 = version[0] === "3";

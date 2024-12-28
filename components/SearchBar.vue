@@ -3,16 +3,23 @@
 </template>
 
 <script lang="ts" setup>
-const search = ref('');
+// @ts-ignore
+import { defineProps, defineEmits } from 'vue'
 import type { Question } from '~/types/question'
-const filteredquestions = ref<Question[]>([])
-const questions = ref<Question[]>([])
+
+const props = defineProps<{
+    questions: Question[],
+    filteredquestions: Question[]
+}>()
+
+const emit = defineEmits(['update:filteredquestions'])
+
+const search = ref('')
 
 function searchquestions() {
-    filteredquestions.value = questions.value.filter(question => {
-        question.tags.some(tag => {
-            tag.toLowerCase().includes(search.value.toLowerCase())
-        })
-    })
+    const filtered = props.questions.filter((question: { tags: string[]; }) =>
+        question.tags.some(tag => tag.toLowerCase().includes(search.value.toLowerCase()))
+    )
+    emit('update:filteredquestions', filtered)
 }
 </script>
