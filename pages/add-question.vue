@@ -37,26 +37,13 @@ const availableTags = ref([]);
 
 
 async function addQuestion() {
-  // 验证必填项是否有值
-  if (!question.value.title || !question.value.answer) {
-    alert('题目和答案不能为空');
-    return;
-  }
-
-  // 验证选项是否填写完整
+  // 驗證選項、題目跟答案是否皆有值
   const options = question.value.options;
   const missingOptions = Object.values(options).filter(option => !option);
-
-  if (missingOptions.length > 0) {
-    alert('请完整填写所有选项');
+  if (!question.value.title || !question.value.answer || missingOptions.length > 0) {
+    alert('請填寫完整');
     return;
   }
-
-  // 打印题目的内容
-  console.log('题目内容:', question.value.title);
-  console.log('选项:', question.value.options);
-  console.log('正确答案:', question.value.answer);
-  console.log('标签:', question.value.tags);
 
   await uploadData(question);
 
@@ -104,7 +91,7 @@ function updateTags(val) {
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  top:10vh;
+  top: 10vh;
   position: relative;
 }
 

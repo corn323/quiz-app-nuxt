@@ -36,7 +36,7 @@ const props = defineProps<{
 
 const selectedQuestions = ref<Question[]>([])
 const dialog = ref(false)
-const dialogQuestion = ref<Question | null>(null)
+const dialogQuestion = ref<Question>()
 
 function showQuestion(question: Question) {
     dialogQuestion.value = question;
