@@ -9,7 +9,11 @@
 - 2025/01/02專案半棄置，用[新模板](https://github.com/gurvancampion/nuxt-electron-trpc-prisma)繼續後半段開發
 - 2025/01/05完成Build
 
-#### 不定期更新
+### TODO
+- 介面功能提示(標籤用途)
+- 生成頁面功能改善與新增
+- 資料庫格式修改
+- 軟體介紹頁面
 
 ## 專案初始化與安裝
 ```bash
