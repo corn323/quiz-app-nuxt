@@ -1,21 +1,65 @@
-import vuetify from 'vite-plugin-vuetify';
+import fs from 'node:fs'
+import path from 'node:path'
+import process from 'node:process'
+import vuetify from 'vite-plugin-vuetify'
+import pkg from './package.json'
 
-export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+fs.rmSync(path.join(__dirname, 'dist-electron'), { recursive: true, force: true })
+
+const viteElectronBuildConfig = {
   build: {
-    transpile: ['vuetify']
-  },
-  plugins: ['~/plugins/vuetify'],
-  css: ['vuetify/styles'],
-  vite: {
-    ssr: {
-      noExternal: ['vuetify']
+    minify: process.env.NODE_ENV === 'production',
+    rollupOptions: {
+      external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
     },
-    plugins: [
-      vuetify({
-        autoImport: true,
-      }),
+  },
+  resolve: {
+    alias: {
+      '~': __dirname,
+    },
+  },
+}
+
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  ssr: false,
+  experimental: {
+    appManifest: false,
+  },
+  css: [
+    '@/src/assets/css/main.css',
+  ],
+  modules: [
+    'nuxt-electron', 'vuetify-nuxt-module', '@nuxtjs/mdc',
+    async (options, nuxt) => {
+      // @ts-expect-error: remove ts error
+      nuxt.hooks.hook('vite:extendConfig', config => config.plugins.push(
+        vuetify(),
+      ))
+    }
+  ],
+  vuetify: {
+    moduleOptions: {
+
+    },
+    vuetifyOptions: {}
+  },
+  electron: {
+    build: [
+      {
+        entry: 'electron/main.ts',
+        vite: viteElectronBuildConfig,
+      },
+      {
+        entry: 'electron/preload.ts',
+        onstart(options) {
+          // Notify the renderer process to reload the page when the preload-script is completely loaded
+          // Instead of restarting the entire electron app
+          options.reload()
+        },
+        vite: viteElectronBuildConfig,
+      },
     ],
   },
 })
+

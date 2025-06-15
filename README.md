@@ -1,5 +1,4 @@
 # quiz-app-nuxt
-## 此頁面於2025/01/02後不再更新程式碼，只更新打包後成果
 ### 這是一款出題軟體，用nuxt、vuetify、doc來開發
 - 2024/12/20 專案建置時間（畫面:40%、功能:0％）
 - 2024/12/24 拉版與拆分（畫面:70%、功能:0％）
@@ -9,24 +8,33 @@
 - 2025/01/02 專案半棄置，用[新模板](https://github.com/gurvancampion/nuxt-electron-trpc-prisma)繼續後半段開發
 - 2025/01/05 完成Build-V1.0.0版
 - 2025/01/15 完成Build-V1.1.0版
+  
+## 此專案於2025/01/02至2025/06/15 並未上傳原始程式碼至此
+## V2.0.0版將會重新上傳原始碼至Github上，僅供各位參考
+## V2.0.0版以後將不在支援win7以下的作業系統，MacOS版本仍在大版本更新時上傳
+
 
 ### TODO
 - 資料庫格式修改
 
 ## 專案初始化與安裝
 ```bash
-# npm
-npm install
-```
+# 使用 pnpm 安裝相依套件
+pnpm install
 
-## 專案啟動與開發者頁面
-```bash
-# npm
-npm run dev
-```
+# 執行 Prisma 資料庫遷移與產生 Prisma Client
+pnpm prisma migrate dev
+pnpm prisma generate
 
-## 專案建置
-```bash
-# npm
-npm run build
+# 專案啟動與開發者頁面
+pnpm run dev
+
+# 專案建置
+pnpm run build
 ```
+## 聯繫方式
+ 如有任何問題或建議，請聯繫我：
+ - Email: contact@corn323.com
+ - Discord: corn323
+
+#### 感謝您使用 Quiz-app-nuxt，希望能為各位老師們減少出題時所需的時間成本！

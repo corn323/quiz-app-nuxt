@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+  output="../../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Question {
+  id        Int    @id @default(autoincrement())
+  question  String
+  options   String
+  answer    String
+  tags      String
+  isMath    Boolean
+}
