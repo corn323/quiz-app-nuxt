@@ -1,12 +1,11 @@
-import { Document, Paragraph, TextRun, AlignmentType, Packer, Math, MathRun } from 'docx';
+import { Document, Paragraph, TextRun, AlignmentType, Packer, MathRun } from 'docx';
 import { saveAs } from 'file-saver';
 import { MathfieldElement } from 'mathlive';
+import { convertMathExpression } from './mathUtils';
 
 const FONT_FAMILY = "標楷體";
 const NORMAL_TEXT_SIZE = 24;
 const TITLE_TEXT_SIZE = 32;
-const HINT_TEXT_SIZE = 20;
-const HINT_TEXT_COLOR = "008000";
 const ERROR_TEXT_COLOR = "FF0000";
 const OPTION_INDENT_LEFT = 720;
 
@@ -29,8 +28,24 @@ function getOptionLabel(index: number): string {
   return String.fromCharCode(65 + index);
 }
 
-function parseLatexToDocxMathComponents(latexString: string): MathRun[] {
-  return [new MathRun(latexString)];
+async function parseLatexToDocxMathComponents(latexString: string): Promise<(TextRun | MathRun)[]> {
+  try {
+
+    const convertedMath = await convertMathExpression(latexString, false);
+
+    const mathRun = new MathRun(convertedMath);
+
+    return [mathRun];
+
+  } catch (error) {
+    console.warn('Math conversion failed, using original LaTeX:', error);
+    return [new TextRun({
+      text: latexString,
+      size: NORMAL_TEXT_SIZE,
+      font: FONT_FAMILY,
+      color: ERROR_TEXT_COLOR
+    })];
+  }
 }
 
 function createStyledTextRun(text: string, options?: { size?: number; bold?: boolean; color?: string; }): TextRun {
@@ -43,19 +58,17 @@ function createStyledTextRun(text: string, options?: { size?: number; bold?: boo
   });
 }
 
-function addQuestionToDoc(questionText: string, index: number, isMath: boolean, docChildren: any[]): void {
+async function addQuestionToDoc(questionText: string, index: number, isMath: boolean, docChildren: any[]): Promise<void> {
   const prefix = `${index + 1}. `;
 
   if (isMath) {
     try {
-      const mathComponents = parseLatexToDocxMathComponents(questionText);
+      const mathComponents = await parseLatexToDocxMathComponents(questionText);
       docChildren.push(
         new Paragraph({
           children: [
             createStyledTextRun(prefix),
-            new Math({
-              children: mathComponents
-            })
+            ...mathComponents
           ]
         })
       );
@@ -80,26 +93,24 @@ function addQuestionToDoc(questionText: string, index: number, isMath: boolean, 
   }
 }
 
-function addOptionToDoc(optionText: string, optionIndex: number, isMath: boolean, docChildren: any[]): void {
+async function addOptionToDoc(optionText: string, optionIndex: number, isMath: boolean, docChildren: any[]): Promise<void> {
   const prefix = `${getOptionLabel(optionIndex)}. `;
   const commonParagraphProps = { indent: { left: OPTION_INDENT_LEFT } };
 
   if (isMath) {
     try {
-      const optionMathComponents = parseLatexToDocxMathComponents(optionText);
+      const optionMathComponents = await parseLatexToDocxMathComponents(optionText);
       docChildren.push(
         new Paragraph({
           ...commonParagraphProps,
           children: [
             createStyledTextRun(prefix),
-            new Math({
-              children: optionMathComponents
-            })
+            ...optionMathComponents
           ]
         })
       );
     } catch (error) {
-      console.error(`Error processing LaTeX for option ${getOptionLabel(optionIndex)}: ${optionText}`, error);
+      console.error(`Error processing LaTeX for option ${optionIndex + 1}: ${optionText}`, error);
       docChildren.push(
         new Paragraph({
           ...commonParagraphProps,
@@ -123,6 +134,7 @@ function addOptionToDoc(optionText: string, optionIndex: number, isMath: boolean
 
 export async function generateDocx(items: DraggableElement[], textBoxes: DraggableElement[]) {
   const docChildren: any[] = [];
+
   docChildren.push(
     new Paragraph({
       alignment: AlignmentType.CENTER,
@@ -133,35 +145,16 @@ export async function generateDocx(items: DraggableElement[], textBoxes: Draggab
     new Paragraph({ children: [new TextRun("")] })
   );
 
-  // --- 提示信息 ---
-  docChildren.push(
-    new Paragraph({
-      children: [
-        createStyledTextRun("[提示]：文件中的LaTeX文字目前無法自動轉換成數學方程式，需手動轉換。", {
-          size: HINT_TEXT_SIZE,
-          bold: true,
-          color: HINT_TEXT_COLOR
-        }),
-        createStyledTextRun("滑鼠靠近該部分後會顯示下拉式選單，點開選單後選取專業即可", {
-          size: HINT_TEXT_SIZE,
-          bold: true,
-          color: HINT_TEXT_COLOR
-        })
-      ]
-    }),
-    new Paragraph({ children: [new TextRun("")] })
-  );
-
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
 
     if (item.question) {
-      addQuestionToDoc(item.question, i, !!item.isMath, docChildren);
+      await addQuestionToDoc(item.question, i, !!item.isMath, docChildren);
     }
 
     if (item.options) {
       for (let optIndex = 0; optIndex < item.options.length; optIndex++) {
-        addOptionToDoc(item.options[optIndex], optIndex, !!item.isMath, docChildren);
+        await addOptionToDoc(item.options[optIndex], optIndex, !!item.isMath, docChildren);
       }
     }
 
@@ -190,7 +183,12 @@ export async function generateDocx(items: DraggableElement[], textBoxes: Draggab
     }]
   });
 
-  Packer.toBlob(doc).then(blob => {
+  try {
+    const blob = await Packer.toBlob(doc);
     saveAs(blob, 'exam.docx');
-  });
+    console.log('文件生成成功');
+  } catch (error) {
+    console.error('文件生成失敗:', error);
+    throw error;
+  }
 }
